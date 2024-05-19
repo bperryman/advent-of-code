@@ -10,8 +10,10 @@
   :components ((:module "src"
                 :components
                 ((:file "package")
-                 (:file "interval")
-                 (:file "file-import"))))
+                 (:file "point" :depends-on ("package"))
+                 (:file "interval" :depends-on ("package"))
+                 (:file "interval-map" :depends-on ("interval" "package"))
+                 (:file "file-import" :depends-on ("package")))))
   :in-order-to ((test-op (test-op :advent-of-code/test))))
 
 (asdf:defsystem #:advent-of-code/test
