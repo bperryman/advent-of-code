@@ -14,7 +14,7 @@
       (funcall (interval-map-unmapped mapping) val)))
 
 
-(defun create-interval-map (src dst &key (length nil) (src-end nil) (unmapped nil))
+(defun new-interval-map (src dst &key (length nil) (src-end nil) (unmapped nil))
   (assert (and (or (numberp length) (numberp src-end))
                (not (and (null length) (null src-end))))
           (length src-end)

@@ -4,6 +4,10 @@
   ((start :initarg :start :reader interval-start)
    (end :initarg :end :reader interval-end)))
 
+(defun new-interval (start end)
+  "Create a new interval."
+  (make-instance 'interval :start start :end end))
+
 (defmethod contains-p ((i1 interval) num)
   (<= (interval-start i1)
       num
