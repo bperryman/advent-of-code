@@ -4,6 +4,15 @@
   x
   y)
 
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (set-macro-character #\@ 
+                       #'(lambda (stream char)
+                           (declare (ignore char))
+                           (let ((point (read stream t nil t)))
+                             (unless (and (listp point) (= 2 (length point)))
+                               (error "A point consists of a list of two items"))
+                             `(make-point :x ,(first point) :y ,(second point))))))
+
 (defmethod print-object ((pt point) stream)
   (format stream "@(~a ~a)" (point-x pt) (point-y pt)))
 
@@ -24,10 +33,3 @@
                           (and diagonals (list @(-1 -1) @(1 -1) @(-1 1) @(1 1))))))
       (remove-if-not #'valid (mapcar #'(lambda (delta) (add-points pt delta)) points)))))
 
-(set-macro-character #\@ 
-  #'(lambda (stream char)
-      (declare (ignore char))
-      (let ((point (read stream t nil t)))
-        (unless (and (listp point) (= 2 (length point)))
-          (error "A point consists of a list of two items"))
-        `(make-point :x ,(first point) :y ,(second point)))))
