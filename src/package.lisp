@@ -1,12 +1,19 @@
 (defpackage #:advent-of-code
   (:use cl)
   (:nicknames #:aoc)
-  (:export #:read-all-line-data
+  (:export #:read-data-file
            #:process-line-as-list
+           #:process-dataset-to-matrix
 
-           #:new-point
+           #:make-dataset-from-data 
+           #:data-at 
+
+           #:create-point
            #:point-x
            #:point-y
+           #:add-points
+
+           ;; Will also want to include some routines for data grids
 
            #:interval
            #:interval-start

@@ -11,8 +11,9 @@
                 :components
                 ((:file "package")
                  (:file "point" :depends-on ("package"))
+                 (:file "dataset" :depends-on ("package" "point"))
                  (:file "interval" :depends-on ("package"))
-                 (:file "interval-map" :depends-on ("interval" "package"))
+                 (:file "interval-map" :depends-on ("package" "interval"))
                  (:file "file-import" :depends-on ("package")))))
   :in-order-to ((test-op (test-op :advent-of-code/test))))
 
