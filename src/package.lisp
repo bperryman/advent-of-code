@@ -5,8 +5,13 @@
            #:process-line-as-list
            #:process-dataset-to-matrix
 
+           #:make-dataset
            #:make-dataset-from-data 
-           #:data-at 
+           #:data-at
+           #:positions-for
+           #:dataset-size
+           #:do-all-points
+           #:do-all-data
 
            #:create-point
            #:point-x

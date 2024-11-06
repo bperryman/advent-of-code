@@ -2,7 +2,7 @@
 
 (in-package #:advent-of-code)
 
-(defun read-data-file (file &optional
+(defun read-data-file (file &key
                             (line-processor #'identity)
                             (dataset-processor #'identity))
   "Reads a problem data file, allowing manipulation of the data on a
@@ -21,6 +21,6 @@ line by line basis and a final whole dataset before the data is returned"
 (defun process-dataset-to-matrix (dataset &key (element-type t))
   (let ((rows (length dataset))
         (columns (length (first dataset))))
-    (make-array (list (rows columns))
+    (make-array (list rows columns)
                 :element-type element-type
                 :initial-contents dataset)))
