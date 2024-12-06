@@ -16,6 +16,7 @@
                                         (error "A point consists of a list of two items"))
                                       `(make-point :x ,(first point) :y ,(second point))))))
 
+
 (defmethod print-object ((pt point) stream)
   (format stream "#@(~a ~a)" (point-x pt) (point-y pt)))
 

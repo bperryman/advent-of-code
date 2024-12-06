@@ -12,6 +12,7 @@
            #:dataset-size
            #:do-all-points
            #:do-all-data
+           #:dataset-contains-point-p
 
            #:create-point
            #:point-x

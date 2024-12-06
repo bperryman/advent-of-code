@@ -12,6 +12,12 @@
               :element-type element-type
               :initial-contents initial-contents))
 
+(defun dataset-contains-point-p (dataset point)
+  "Test to see if the point is a valid point within the dataset."
+  (let ((size (dataset-size dataset)))
+    (and (>= 0 (point-x point) (1- (point-x size)))
+         (>= 0 (point-y point) (1- (point-y size))))))
+
 (defun data-at (dataset point)
   "Return the data from the dataset at the supplied point."
   (aref dataset (point-y point) (point-x point)))
@@ -34,10 +40,6 @@ match the value."
                          when (funcall test value (funcall key (data-at dataset pt)))
                               collect pt))))
 
-(defun dataset-size (dataset)
-  "Returns the dimensions of the dataset."
-  (let ((dims (array-dimensions dataset)))
-    (values (create-point (second dims) (first dims)))))
 
 (defun do-all-points (fn dataset)
   "Iterate over the dataset calling fn with a valid location point within
@@ -51,3 +53,8 @@ the dataset."
   "Iterate over the dataset and call fn with each of the values in turn."
   (do-all-points #'(lambda (pt) (funcall fn (data-at dataset pt)))
                  dataset))
+
+(defun dataset-size (dataset)
+  "Returns the dimensions of the dataset."
+  (let ((dims (array-dimensions dataset)))
+    (create-point (second dims) (first dims))))
