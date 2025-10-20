@@ -33,7 +33,7 @@
                 (or (null max-point)
                     (and (<= (point-x pt) (point-x max-point))
                          (<= (point-y pt) (point-y max-point)))))))
-    (let ((points (append (list #@(1 0) #@(-1 0) #@(0 1) #@(0 -1))
+    (let ((points (append (list #@(0 -1) #@(1 0) #@(0 1) #@(-1 0))
                           (and diagonals (list #@(-1 -1) #@(1 -1) #@(-1 1) #@(1 1))))))
       (remove-if-not #'valid (mapcar #'(lambda (delta) (add-points pt delta)) points)))))
 

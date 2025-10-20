@@ -15,8 +15,8 @@
 (defun dataset-contains-point-p (dataset point)
   "Test to see if the point is a valid point within the dataset."
   (let ((size (dataset-size dataset)))
-    (and (>= 0 (point-x point) (1- (point-x size)))
-         (>= 0 (point-y point) (1- (point-y size))))))
+    (and (<= 0 (point-x point) (1- (point-x size)))
+         (<= 0 (point-y point) (1- (point-y size))))))
 
 (defun data-at (dataset point)
   "Return the data from the dataset at the supplied point."
@@ -58,3 +58,13 @@ the dataset."
   "Returns the dimensions of the dataset."
   (let ((dims (array-dimensions dataset)))
     (create-point (second dims) (first dims))))
+
+(defun dataset-nesw (dataset point)
+  "Returns a list of the values of the dataset for the north, east, south 
+and west cells around the point.
+For directions that lay outside of the dataset a nil is returned"
+  (let ((directions (surrounding-points point)))
+    (mapcar #'(lambda (pt)
+                (when (dataset-contains-point-p dataset pt)
+                  (data-at dataset pt)))
+            directions)))

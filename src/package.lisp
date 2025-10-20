@@ -13,6 +13,7 @@
            #:do-all-points
            #:do-all-data
            #:dataset-contains-point-p
+           #:dataset-nesw
 
            #:create-point
            #:point-x
