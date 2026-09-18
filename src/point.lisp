@@ -20,10 +20,20 @@
 (defmethod print-object ((pt point) stream)
   (format stream "#@(~a ~a)" (point-x pt) (point-y pt)))
 
+(defun negate-point (pt)
+  "Return the negative of the point"
+  (make-point :x (- (point-x pt))
+              :y (- (point-y pt))))
+
 (defun add-points (p1 p2)
   "Adds the two points p1 and p2 together and returns the result as a new point"
   (make-point :x (+ (point-x p1) (point-x p2))
               :y (+ (point-y p1) (point-y p2))))
+
+(defun subtract-points (p1 p2)
+  "Subtracts the two points p1 and p2 from one another and returns the result as a new point"
+  (make-point :x (- (point-x p1) (point-x p2))
+              :y (- (point-y p1) (point-y p2))))
 
 (defun surrounding-points (pt &key (diagonals nil) min-point max-point)
   (flet ((valid (pt)

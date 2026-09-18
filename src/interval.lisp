@@ -38,3 +38,7 @@
                      :start (min (interval-start i1) (interval-start i2))
                      :end (max (interval-end i1) (interval-end i2)))
       i1))
+
+(defmethod print-object ((interval interval) stream)
+  (print-unreadable-object (interval stream :type t :identity nil)
+    (format stream "(~a ~a)" (interval-start interval) (interval-end interval))))

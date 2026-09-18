@@ -16,9 +16,11 @@
            #:dataset-nesw
 
            #:create-point
+           #:negate-point
            #:point-x
            #:point-y
            #:add-points
+           #:subtract-points
            #:surrounding-points
 
            ;; Will also want to include some routines for data grids
